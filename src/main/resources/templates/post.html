@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>从后端获取帖子标题</title>
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div th:replace="~{navi :: navi}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mx-auto my-3">
+<!--                面包屑-->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a th:href="@{/index}">首页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">发布新帖</li>
+                    </ol>
+                </nav>
+
+                <div class="px-2 pb-2">
+                    <!--                帖子标题输入-->
+                    <div class="input-group flex-nowrap">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addon-wrapping">标题</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="请输入标题，并在下边输入框输入帖子内容。" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <!--                帖子内容输入-->
+                    <div class="form-group mb-2">
+                        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="15"></textarea>
+                    </div>
+                    <!--                    选择分区-->
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                            <input type="radio" name="options" id="option1" checked> 全部
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="option2"> 闲聊
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="option3"> 失物招领
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="option4"> 消息发布
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-primary pull-right">提交</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mx-auto my-3">
+                <div class="card-body">
+                    <h5 class="card-title">发帖提醒</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">标题栏语音请尽量表达清晰。</li>
+                    <li class="list-group-item">正文栏可以在右下角拖拽缩放。</li>
+                    <li class="list-group-item">请选择发帖区。</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="~{navib :: navib}"></div>
+</body>
+</html>

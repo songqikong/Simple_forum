@@ -13,76 +13,127 @@
 </head>
 
 <body>
-
+<!--导入navi-->
 <div th:replace="~{navi :: navi}"></div>
-
+<!--主容器-->
 <div class="main mt-4">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
-<!--
-                    <div class="btn-group mr-auto mt-3 ml-3" role="group" aria-label="label-group">
-                        <button type="button" class="btn btn-outline-primary active">全部</button>
-                        <button type="button" class="btn btn-outline-primary">闲聊</button>
-                        <button type="button" class="btn btn-outline-primary">失物招领</button>
-                        <button type="button" class="btn btn-outline-primary">消息发布</button>
-                    </div>-->
+<!--                分区导航栏-->
+                <div class="card" style="padding-bottom: 10px">
                     <a>
-                        <span>
-                               <button type="button" class="btn btn-outline-primary active  mr-auto mt-3 ml-3">全部</button>
-                        </span>
-                        <span>
-                               <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">闲聊</button>
-                        </span>
-                        <span>
-                               <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">失物招领</button>
-                        </span>
-                        <span>
-                               <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">消息发布</button>
-                        </span>
+                    <span>
+                           <button type="button" class="btn btn-outline-primary active  mr-auto mt-3 ml-3">全部</button>
+                    </span>
+                    <span>
+                           <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">闲聊</button>
+                    </span>
+                    <span>
+                           <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">失物招领</button>
+                    </span>
+                    <span>
+                           <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">消息发布</button>
+                    </span>
                     </a>
+                    <hr style="margin-bottom: 10px"/>
+<!--                    帖子显示区-->
 
-                    <hr/>
-                    
+                    <div class="media">
+                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
+                        <div class="media-body media_body">
+                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
+                            <span class="mr-2 p-1 category">aaa</span>发布于 2020-7-3
+                        </div>
+                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
+                    </div>
+                    <hr class="divider"/>
+
+                    <div class="media">
+                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
+                        <div class="media-body media_body">
+                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
+                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
+                        </div>
+                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
+                    </div>
+                    <hr class="divider"/>
+
+                    <div class="media">
+                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
+                        <div class="media-body media_body">
+                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
+                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
+                        </div>
+                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
+                    </div>
+                    <hr class="divider"/>
+
+                    <div class="media">
+                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
+                        <div class="media-body media_body">
+                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
+                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
+                        </div>
+                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
+                    </div>
+                    <hr class="divider"/>
+
+                    <div class="media">
+                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
+                        <div class="media-body media_body">
+                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
+                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
+                        </div>
+                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
+<!--                个人资料卡 未登录：slogan+登录提示 已登录：个人资料卡+发帖按钮-->
                 <div class="card m-auto">
                     <div class="card-body">
                         <h5 class="card-title">QutZone = Campus + Geek</h5>
                         <small class="text-muted">QutZone是一个关于青春和梦想的地方。</small>
                         <hr/>
-                        <a th:href=@{/register} class="btn btn-primary mb-2" style="margin: 0px auto;display: table;">现在注册</a>
-                        <p class="card-title m-auto" style="margin: 0px auto;display: table; color: #6c757d; size: 0.5rem;" >已有账号？请<a th:href=@{/login}>登录</a> </p>
+                        <a th:href="@{/register}" class="btn btn-primary mb-2" style="margin: 0px auto;display: table;">现在注册</a>
+                        <p class="card-title m-auto" style="margin: 0;display: table; color: #6c757d; size: 0.5rem;" >已有账号？请<a th:href="@{/login}">登录</a> </p>
                     </div>
                 </div>
+<!--                搜索框-->
                     <form class="form-inline mt-2">
-                        <input class="form-control" type="text" style="width:87%" placeholder="搜索关键字" aria-label="Search">
+                        <input class="form-control" type="text" style="width:85%" placeholder="搜索关键字" aria-label="Search">
                         <button class="btn btn-outline-primary ml-auto  my-2 my-sm-0" type="submit"><i class="fa fa-search" style="color:#007bff"></i></button>
                     </form>
-
             </div>
-            <div class="col-md-8 mt-4">
-
+            <div class="col-md-8 mt-3">
+                <!--                分页符-->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
 </div>
-
+<!---->
 <div th:replace="~{navib :: navib}"></div>
 
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
