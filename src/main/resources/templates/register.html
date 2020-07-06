@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册</title>
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+<!--导入导航栏-->
+<div th:replace="~{navi :: navi}"></div>
+<!--包含登录框和其他登录方式的容器-->
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="col-md-8">
+            <!--登录框card-->
+            <div class="card">
+                <form>
+                    <!--面包屑导航，偷懒用静态-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a th:href=@{/index}>首页</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">注册</li>
+                        </ol>
+                    </nav>
+                    <!--用户名from-->
+                    <div class="form-group mt-4 mb-4 ml-3 mr-3">
+                        <label for="exampleInputEmail1">用户名</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">
+                    </div>
+                    <!--密码from-->
+                    <div class="form-group mt-4 mb-4 ml-3 mr-3">
+                        <label for="FirstInputPassword">密码</label>
+                        <input type="password" class="form-control" id="FirstInputPassword">
+                    </div>
+                    <!--重复密码-->
+                    <div class="form-group mt-4 mb-4 ml-3 mr-3">
+                        <label for="SecondInputPassword">重复密码</label>
+                        <input type="password" class="form-control" id="SecondInputPassword">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mb-4 ml-3">注册</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <!--其他登录方式card-->
+            <div class="card" style="width: 21rem;">
+                <div class="card-body">
+                    <h5 class="card-title">其他登录方式</h5>
+                    <hr/>
+                    <img src="img/QQlogin.png" height="48" width="192" class="rounded mx-auto d-block" alt="qq_register">
+                    <img src="img/weibologin.png" height="48" width="192" class="rounded mx-auto d-block mt-2" alt="weibo_register">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{navib :: navib}"></div>
+</body>
+</html>

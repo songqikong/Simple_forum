@@ -4,45 +4,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>首页</title>
+    <title>QutZone - 青理最酷的社区</title>
     <!--bootstrap css-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <!--index 样式-->
     <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<div th:replace="~{navi :: navi}"></div>
+
+<div class="main mt-4">
     <div class="container">
-          <a class="navbar-brand" href="#">QutZone</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+<!--
+                    <div class="btn-group mr-auto mt-3 ml-3" role="group" aria-label="label-group">
+                        <button type="button" class="btn btn-outline-primary active">全部</button>
+                        <button type="button" class="btn btn-outline-primary">闲聊</button>
+                        <button type="button" class="btn btn-outline-primary">失物招领</button>
+                        <button type="button" class="btn btn-outline-primary">消息发布</button>
+                    </div>-->
+                    <a>
+                        <span>
+                               <button type="button" class="btn btn-outline-primary active  mr-auto mt-3 ml-3">全部</button>
+                        </span>
+                        <span>
+                               <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">闲聊</button>
+                        </span>
+                        <span>
+                               <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">失物招领</button>
+                        </span>
+                        <span>
+                               <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">消息发布</button>
+                        </span>
+                    </a>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="请输入关键字">
-                  <button class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
-              </form>
+                    <hr/>
+                    
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card m-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">QutZone = Campus + Geek</h5>
+                        <small class="text-muted">QutZone是一个关于青春和梦想的地方。</small>
+                        <hr/>
+                        <a th:href=@{/register} class="btn btn-primary mb-2" style="margin: 0px auto;display: table;">现在注册</a>
+                        <p class="card-title m-auto" style="margin: 0px auto;display: table; color: #6c757d; size: 0.5rem;" >已有账号？请<a th:href=@{/login}>登录</a> </p>
+                    </div>
+                </div>
+                    <form class="form-inline mt-2">
+                        <input class="form-control" type="text" style="width:87%" placeholder="搜索关键字" aria-label="Search">
+                        <button class="btn btn-outline-primary ml-auto  my-2 my-sm-0" type="submit"><i class="fa fa-search" style="color:#007bff"></i></button>
+                    </form>
 
-              <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="#">登录 <span class="sr-only">(current)</span></a>
-                  </li>
-              </ul>
+            </div>
+            <div class="col-md-8 mt-4">
 
-          </div>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>
+
+<div th:replace="~{navib :: navib}"></div>
 
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->

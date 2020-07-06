@@ -1,4 +1,9 @@
 body
   { 
-  background: #e2e2e2;
+  background-color: #f8f9fb;
   }
+
+blockquote
+{
+  background-color: #ffffff;
+}
