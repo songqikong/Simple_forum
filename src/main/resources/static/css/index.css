@@ -29,9 +29,22 @@ blockquote
 }
 .media_body
 {
-  color:#e2e2e2;
+  color: #bbbbbb;
 }
 .non_divider
 {
   margin: 0px;
+}
+.t_title
+{
+  font-size: 24px;
+  color: #6c757d;
+}
+.post_body
+{
+  margin-left: 15px;
+}
+.comment_body
+{
+  color: #6c757d;
 }

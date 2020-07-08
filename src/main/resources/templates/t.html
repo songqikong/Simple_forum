@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>从数据库获取标题</title>
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--index 样式-->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+<!--导入navi-->
+<div th:replace="~{navi :: navi}"></div>
+<!--主容器-->
+<div class="main mt-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+<!--                分区导航栏-->
+                <div class="card">
+<!--                    面包屑导航-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-3">
+                            <li class="breadcrumb-item"><a th:href="@{/index}">首页</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">闲聊</li>
+                        </ol>
+                    </nav>
+<!--                        标题栏-->
+                    <div class="media px-3">
+                        <div class="media-body media_body">
+                            <h5 class="t_title">QutZone是最好的社区！</h5>
+                            发布于 2020-7-3<span class="ml-2">一共有 2 个回复</span>
+                        </div>
+                        <img src="img/ava.png" class="mr-auto ml-3" style="height: 64px;width: 64px;" alt="avatar-big">
+                    </div>
+                    <hr class="divider"/>
+                    <div class="post_body">
+                    <p>撒大苏打实打实的的撒旦</p>
+                    <p>撒大苏打实打实的的撒旦</p>
+                    <p>撒大苏打实打实的的撒旦</p>
+                    <p>撒大苏打实打实的的撒旦</p>
+                    <p>撒大苏打实打实的的撒旦</p>
+                    <p>撒大苏打实打实的的撒旦</p>
+                    <p>撒大苏打实打实的的撒旦</p>
+                    </div>
+                </div>
+<!--                回复card-->
+                <div class="card my-3 pb-3">
+                    <h6 class="media_body mx-3 mt-3 mb-2">回复</h6>
+                    <hr class="divider"/>
+<!--                    回复展示区-->
+                    <div class="media">
+                        <img src="img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
+                        <div class="media-body comment_body">
+                            <p style="font-size: 15px; margin-top: 5px;margin-bottom: 5px">这里显示回复人ID</p>
+                            我觉得这个帖子很棒
+                        </div>
+                    </div>
+                    <hr class="divider"/>
+                    <div class="media">
+                        <img src="img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
+                        <div class="media-body comment_body">
+                            <p style="font-size: 15px; margin-top: 5px;margin-bottom: 5px">这里显示回复人ID</p>
+                            我觉得这个帖子很棒
+                        </div>
+                    </div>
+                    <hr class="divider"/>
+                    <div class="media">
+                        <img src="img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
+                        <div class="media-body comment_body">
+                            <p style="font-size: 15px; margin-top: 5px;margin-bottom: 5px">这里显示回复人ID</p>
+                            我觉得这个帖子很棒
+                        </div>
+                    </div>
+                </div>
+<!--                回复框-->
+                <div class="card my-3 pb-3">
+                    <h6 class="media_body mx-3 mt-3 mb-2">添加一条新的回复</h6>
+                    <hr class="divider"/>
+                    <!--                帖子内容输入-->
+                    <div class="form-group mb-2 mx-2">
+                        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="15"></textarea>
+                    </div>
+<!--                    回复按钮-->
+                    <button type="submit" class="btn btn-primary mx-2">登录</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!--                个人资料卡 未登录：slogan+登录提示 已登录：个人资料卡+发帖按钮-->
+                <div class="card m-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">QutZone = Campus + Geek</h5>
+                        <small class="text-muted">QutZone是一个关于青春和梦想的地方。</small>
+                        <hr/>
+                        <a th:href="@{/register}" class="btn btn-primary mb-2" style="margin: 0px auto;display: table;">现在注册</a>
+                        <p class="card-title m-auto" style="margin: 0;display: table; color: #6c757d; size: 0.5rem;" >已有账号？请<a th:href="@{/login}">登录</a> </p>
+                    </div>
+                </div>
+                <!--                搜索框-->
+                <form class="form-inline mt-2">
+                    <input class="form-control" type="text" style="width:85%" placeholder="搜索关键字" aria-label="Search">
+                    <button class="btn btn-outline-primary ml-auto  my-2 my-sm-0" type="submit"><i class="fa fa-search" style="color:#007bff"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!---->
+<div th:replace="~{navib :: navib}"></div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
