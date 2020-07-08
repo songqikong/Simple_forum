@@ -19,30 +19,24 @@
         <div class="col-md-8">
             <!--登录框card-->
             <div class="card">
-                <form>
-                    <!--面包屑导航，偷懒用静态-->
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a th:href="@{/index}">首页</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">注册</li>
-                        </ol>
-                    </nav>
+                <!--面包屑导航，偷懒用静态-->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/index}">首页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">注册</li>
+                    </ol>
+                </nav>
+                <form style="padding: 15px;" action="/registerCheck" method="post">
                     <!--用户名from-->
-                    <div class="form-group mt-4 mb-4 ml-3 mr-3">
-                        <label for="exampleInputEmail1">用户名</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">
-                    </div>
+                     <label for="username">用户名</label>
+                     <input type="text" class="form-control mb-3" id="username" name="username" aria-describedby="usernameHelp" placeholder="请输入用户名">
                     <!--密码from-->
-                    <div class="form-group mt-4 mb-4 ml-3 mr-3">
-                        <label for="FirstInputPassword">密码</label>
-                        <input type="password" class="form-control" id="FirstInputPassword">
-                    </div>
+                     <label for="firstPassword">密码</label>
+                     <input type="password" class="form-control mb-3" id="firstPassword" name="firstPassword">
                     <!--重复密码-->
-                    <div class="form-group mt-4 mb-4 ml-3 mr-3">
-                        <label for="SecondInputPassword">重复密码</label>
-                        <input type="password" class="form-control" id="SecondInputPassword">
-                    </div>
-                    <button type="submit" class="btn btn-outline-primary mb-4 ml-3">注册</button>
+                     <label for="secondPassword">重复密码</label>
+                     <input type="password" class="form-control mb-3" id="secondPassword" name="secondPassword">
+                    <button type="submit" class="btn btn-outline-primary mt-1 mb-2">注册</button>
                 </form>
             </div>
         </div>

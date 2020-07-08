@@ -8,6 +8,7 @@
     <!--bootstrap css-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
+    <script src="/js/vue.js"></script>
 </head>
 
 <body>
@@ -19,24 +20,25 @@
         <div class="col-md-8">
             <!--登录框card-->
             <div class="card">
-                <form>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/index}">首页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">登录</li>
+                    </ol>
+                </nav>
+                <form action="/loginCheck" method="post">
                 <!--面包屑导航，偷懒用静态-->
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a th:href="@{/index}">首页</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">登录</li>
-                        </ol>
-                    </nav>
                     <!--用户名from-->
-                    <div class="form-group mt-4 mb-4 ml-3 mr-3">
-                        <label for="exampleInputEmail1">用户名</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">
+                    <div class="form-group mt-3 mb-4 ml-3 mr-3">
+                        <label for="username">用户名</label>
+                        <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameHelp" placeholder="请输入用户名">
                     </div>
                     <!--密码from-->
                     <div class="form-group mt-4 mb-4 ml-3 mr-3">
-                        <label for="exampleInputPassword1">密码</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <label for="password">密码</label>
+                        <input type="password" name="password" class="form-control" id="password">
                     </div>
+                    <p style="color:red; margin-left: 15px;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                     <!--记住账号-->
                     <div class="form-group form-check mt-4 mb-4 ml-3 mr-3">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">

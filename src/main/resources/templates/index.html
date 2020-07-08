@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <!--index 样式-->
     <link rel="stylesheet" href="css/index.css">
+<!--     Vue-->
+    <script src="/js/vue.js"></script>
 </head>
 
 <body>
 <!--导入navi-->
 <div th:replace="~{navi :: navi}"></div>
 <!--主容器-->
-<div class="main mt-4">
+<div class="main mt-3">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -42,17 +44,7 @@
                     <div class="media">
                         <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
                         <div class="media-body media_body">
-                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
-                            <span class="mr-2 p-1 category">aaa</span>发布于 2020-7-3
-                        </div>
-                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
-                    </div>
-                    <hr class="divider"/>
-
-                    <div class="media">
-                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
-                        <div class="media-body media_body">
-                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
+                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
                             <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
                         </div>
                         <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
@@ -62,7 +54,7 @@
                     <div class="media">
                         <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
                         <div class="media-body media_body">
-                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
+                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
                             <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
                         </div>
                         <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
@@ -72,7 +64,7 @@
                     <div class="media">
                         <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
                         <div class="media-body media_body">
-                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
+                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
                             <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
                         </div>
                         <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
@@ -82,7 +74,17 @@
                     <div class="media">
                         <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
                         <div class="media-body media_body">
-                            <h5 class="mt-0"> <a class="post_title"><a class="post_title" th:href="@{/error}">QutZone是最好的社区！</a></h5>
+                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
+                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
+                        </div>
+                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
+                    </div>
+                    <hr class="divider"/>
+
+                    <div class="media">
+                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
+                        <div class="media-body media_body">
+                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
                             <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
                         </div>
                         <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
@@ -93,11 +95,27 @@
 <!--                个人资料卡 未登录：slogan+登录提示 已登录：个人资料卡+发帖按钮-->
                 <div class="card m-auto">
                     <div class="card-body">
-                        <h5 class="card-title">QutZone = Campus + Geek</h5>
-                        <small class="text-muted">QutZone是一个关于青春和梦想的地方。</small>
-                        <hr/>
-                        <a th:href="@{/register}" class="btn btn-primary mb-2" style="margin: 0px auto;display: table;">现在注册</a>
-                        <p class="card-title m-auto" style="margin: 0;display: table; color: #6c757d; size: 0.5rem;" >已有账号？请<a th:href="@{/login}">登录</a> </p>
+                        <div th:if="${session.user == null}">
+                            <h5 class="card-title">QutZone = Campus + Geek</h5>
+                            <small class="text-muted">QutZone是一个关于青春和梦想的地方。</small>
+                            <hr/>
+                            <a th:href="@{/register}" class="btn btn-primary mb-2" style="margin: 0px auto;display: table;">现在注册</a>
+                            <p class="card-title m-auto" style="margin: 0;display: table; color: #6c757d; size: 0.5rem;" >已有账号？请<a th:href="@{/login}">登录</a> </p>
+                        </div>
+                        <div th:if="${session.user} != null">
+                            <div class="media">
+                                <img th:src="${session.user.getHeadpic()}" style="height: 72px;width: 72px; margin-left: 0px;" >
+                                <h4 class="my-auto ml-2" th:text="${session.user.getName()}"></h4>
+                                <a th:href="@{/index}" class="my-auto ml-auto">
+                                    <h6 class="post_title pt-1">未读消息</h6>
+                                </a>
+                                <span class="badge badge-secondary my-auto mx-1">4</span>
+                            </div>
+                            <hr/>
+                            <form action="/post" method="get">
+                            <button class="btn btn-primary btn-lg btn-block" >发帖</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 <!--                搜索框-->

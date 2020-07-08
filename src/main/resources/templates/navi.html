@@ -18,19 +18,26 @@
             <div class="container">
 <!--                logo-->
                 <a th:href="@{/index}">
-                    <img src="img/blue.png"  height="64dp" width="160dp" alt="main_logo">
+                    <img src="img/blue.png"  height="64px" width="160px" alt="main_logo">
                 </a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/register}">注册 <span class="sr-only">(current)</span></a>
+                            <li class="nav-item" th:if="${session.user == null}">
+                                <a class="nav-link" th:href="@{/register}">注册</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/login}">登录 <span class="sr-only">(current)</span></a>
+                            <li class="nav-item" th:if="${session.user == null}">
+                                <a class="nav-link" th:href="@{/login}">登录</a>
+                            </li>
+                            </li>
+
+                            <li class="nav-item" th:if="${session.user} != null">
+                                <a class="nav-link" th:href="@{/error}" th:text="${session.user.getName()}"></a>
+                            </li>
+                            <li class="nav-item" th:if="${session.user} != null">
+                                <a class="nav-link" th:href="@{/loginOut}">退出</a>
+                            </li>
                             </li>
                         </ul>
-
                     </div>
             </div>
         </nav>
