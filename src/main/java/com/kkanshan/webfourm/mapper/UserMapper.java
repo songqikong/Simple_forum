@@ -16,6 +16,9 @@ public interface UserMapper {
     @Select("select * from user where name=#{name} and password=#{password}")
     User select(User user);
 
+    @Select("select * from user where name=#{name}")
+    User selectRegister(User user);
+
     @Select("select  * from user where token=#{token}")
     User findBytoken(String token);
 

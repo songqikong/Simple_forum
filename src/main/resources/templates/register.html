@@ -36,6 +36,7 @@
                     <!--重复密码-->
                      <label for="secondPassword">重复密码</label>
                      <input type="password" class="form-control mb-3" id="secondPassword" name="secondPassword">
+                    <p style="color:red; margin-left: 15px;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                     <button type="submit" class="btn btn-outline-primary mt-1 mb-2">注册</button>
                 </form>
             </div>
