@@ -25,35 +25,37 @@
                     </ol>
                 </nav>
 
-                <div class="px-2 pb-2">
-                    <!--                帖子标题输入-->
-                    <div class="input-group flex-nowrap">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="addon-wrapping">标题</span>
+                <form action="/postCheck" method="post">
+                    <div class="px-2 pb-2">
+                        <!--                帖子标题输入-->
+                        <div class="input-group flex-nowrap">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="addon-wrapping">标题</span>
+                            </div>
+                            <input type="text" name="title" class="form-control" placeholder="请输入标题，并在下边输入框输入帖子内容。" aria-label="Username" aria-describedby="addon-wrapping">
                         </div>
-                        <input type="text" class="form-control" placeholder="请输入标题，并在下边输入框输入帖子内容。" aria-label="Username" aria-describedby="addon-wrapping">
+                        <!--                帖子内容输入-->
+                        <div class="form-group mb-2">
+                            <textarea  name="description" class="form-control mt-2" id="exampleFormControlTextarea1" rows="15"></textarea>
+                        </div>
+                        <!--                    选择分区-->
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                                <input type="radio" name="options" id="option1" checked> 全部
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="option2"> 闲聊
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="option3"> 失物招领
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="option4"> 消息发布
+                            </label>
+                        </div>
+                        <button type="submit"  class="btn btn-primary pull-right">提交</button>
                     </div>
-                    <!--                帖子内容输入-->
-                    <div class="form-group mb-2">
-                        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="15"></textarea>
-                    </div>
-                    <!--                    选择分区-->
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-secondary active">
-                            <input type="radio" name="options" id="option1" checked> 全部
-                        </label>
-                        <label class="btn btn-secondary">
-                            <input type="radio" name="options" id="option2"> 闲聊
-                        </label>
-                        <label class="btn btn-secondary">
-                            <input type="radio" name="options" id="option3"> 失物招领
-                        </label>
-                        <label class="btn btn-secondary">
-                            <input type="radio" name="options" id="option4"> 消息发布
-                        </label>
-                    </div>
-                    <button type="button" class="btn btn-primary pull-right">提交</button>
-                </div>
+                </form>
             </div>
         </div>
 
