@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>发布新帖</title>
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/vue.js"></script>
+    <script src="js/post.js"></script>
+</head>
+<body>
+<!--导入导航栏-->
+<div th:replace="~{navi :: navi}"></div>
+<div class="my-3">
+    <div class="container">
+        <div class="card">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="mx-3 my-3">
+                        <h4 class="post_title">我的消息</h4>
+                        <hr class="divider"/>
+                        <h6 class="post_body">
+                            <span class="mx-1">孔松琦</span>
+                            回复了你的帖子
+                            <span>
+                                <a th:href="@{/t}">QutZone是最好的社区！</a>
+                            </span>
+                        </h6>
+                        <h6 class="post_body">
+                            <span class="mx-1">孔松琦</span>
+                            回复了你的帖子
+                            <span>
+                                <a th:href="@{/t}">QutZone是最好的社区！</a>
+                            </span>
+                        </h6>
+                        <h6 class="post_body">
+                            <span class="mx-1">孔松琦</span>
+                            回复了你的帖子
+                            <span>
+                                <a th:href="@{/t}">QutZone是最好的社区！</a>
+                            </span>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="fixed-bottom">
+    <div th:replace="~{navib :: navib}"></div>
+</div>
+</body>
+</html>

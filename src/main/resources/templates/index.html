@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/index.css">
 <!--     Vue-->
     <script src="/js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -23,73 +24,57 @@
         <div class="row">
             <div class="col-md-8">
 <!--                分区导航栏-->
-                <div class="card" style="padding-bottom: 10px">
-                    <a>
-                    <span>
-                           <button type="button" class="btn btn-outline-primary active  mr-auto mt-3 ml-3">全部</button>
-                    </span>
-                    <span>
-                           <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">闲聊</button>
-                    </span>
-                    <span>
-                           <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">失物招领</button>
-                    </span>
-                    <span>
-                           <button type="button" class="btn btn-outline-primary  mr-auto mt-3 ml-2">消息发布</button>
-                    </span>
-                    </a>
-                    <hr style="margin-bottom: 10px"/>
-<!--                    帖子显示区-->
-
-                    <div class="media">
-                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
-                        <div class="media-body media_body">
-                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
-                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
+                <div id="postlist">
+                    <div class="card" style="padding-bottom: 10px;padding-top: 10px;">
+                        <a>
+                            <span>
+                                   <button type="button" class="btn btn-outline-primary active  mr-auto ml-3">全部</button>
+                            </span>
+                            <span>
+                                   <button type="button" class="btn btn-outline-primary  mr-auto ml-2">闲聊</button>
+                            </span>
+                            <span>
+                                   <button type="button" class="btn btn-outline-primary  mr-auto ml-2">失物招领</button>
+                            </span>
+                            <span>
+                                   <button type="button" class="btn btn-outline-primary  mr-auto ml-2">消息发布</button>
+                            </span>
+                        </a>
+                        <!--                    帖子显示区-->
+                        <template v-for="(list,i) of lists">
+                        <hr class="divider"/>
+                        <div class="media">
+                            <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
+                                <div class="media-body media_body">
+                                    <h5 class="mt-0"><a class="post_title" th:href="@{/t}">{{list.title}}</a></h5>
+                                    <span class="mr-2 p-1 category">#闲聊</span>发布于 {{(list.createTime)}}
+                                </div>
+                            <span class="badge badge-primary ml-auto mr-3 my-auto px-2">{{list.comment_count}}</span>
                         </div>
-                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
-                    </div>
-                    <hr class="divider"/>
+                        </template>
 
-                    <div class="media">
-                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
-                        <div class="media-body media_body">
-                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
-                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
-                        </div>
-                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
                     </div>
-                    <hr class="divider"/>
 
-                    <div class="media">
-                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
-                        <div class="media-body media_body">
-                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
-                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
-                        </div>
-                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
-                    </div>
-                    <hr class="divider"/>
-
-                    <div class="media">
-                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
-                        <div class="media-body media_body">
-                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
-                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
-                        </div>
-                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
-                    </div>
-                    <hr class="divider"/>
-
-                    <div class="media">
-                        <img src="img/ava.png" class="mr-3 ml-3 avatar" alt="avatar">
-                        <div class="media-body media_body">
-                            <h5 class="mt-0"><a class="post_title" th:href="@{/t}">QutZone是最好的社区！</a></h5>
-                            <span class="mr-2 p-1 category">#闲聊</span>发布于 2020-7-3
-                        </div>
-                        <span class="badge badge-primary ml-auto mr-3 my-auto px-2">9</span>
-                    </div>
+<!--分页符-->
+                    <nav aria-label="Page navigation example" class="my-3">
+                        <ul class="pagination">
+                            <li class="page-item" @click="curPage(page.pageNo-1)">
+                                <a class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                                <template v-for="index in page.pageTotal">
+                                    <li class="page-item" @click="curPage(index)"><a class="page-link" href="#">{{index}}</a></li>
+                                </template>
+                            <li class="page-item" @click="curPage(page.pageNo+1)">
+                                <a class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
+
             </div>
             <div class="col-md-4">
 <!--                个人资料卡 未登录：slogan+登录提示 已登录：个人资料卡+发帖按钮-->
@@ -124,31 +109,48 @@
                         <button class="btn btn-outline-primary ml-auto  my-2 my-sm-0" type="submit"><i class="fa fa-search" style="color:#007bff"></i></button>
                     </form>
             </div>
-            <div class="col-md-8 mt-3">
-                <!--                分页符-->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+
         </div>
     </div>
 </div>
 <!---->
 <div th:replace="~{navib :: navib}"></div>
+
+<script>
+    new Vue({
+        el: "#postlist",
+        data: {
+            lists:[],
+            page:{
+                pageTotal:1,
+                pageNo:1,
+                pageSize:10,
+            }
+        },
+        methods:{
+            getLists:function (index) {
+                this.page.pageNo = index || this.page.pageNo;
+                console.log(this.page.pageNo);
+                axios({
+                    method:'get',
+                    url:"/getPost/" + this.page.pageNo
+                }).then(res=>{
+                    console.log(res);
+                    this.lists = res.data.list;
+                    this.page.pageTotal = res.data.pageTotal;
+                }).catch(function (error) {
+
+                })
+            },
+            curPage:function (index) {
+                this.getLists(index);
+            }
+        },
+        mounted:function () {
+            this.getLists();
+        }
+    })
+</script>
 
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->

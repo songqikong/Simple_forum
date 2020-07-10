@@ -2,17 +2,24 @@ package com.kkanshan.webfourm.controller;
 
 import com.kkanshan.webfourm.entity.Question;
 import com.kkanshan.webfourm.entity.User;
+import com.kkanshan.webfourm.entity.postPage;
 import com.kkanshan.webfourm.mapper.QuestionMapper;
 import com.kkanshan.webfourm.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Date;
 
 @Controller
 
@@ -33,11 +40,11 @@ public class postController {
 
     @PostMapping("/postCheck")
     public String postCheck(HttpServletRequest request,
+                            HttpServletResponse response,
                             Model model){
 
         String title = request.getParameter("title");
         String description=request.getParameter("description");
-
 
 
         //获取当前登陆用户的信息
@@ -53,7 +60,8 @@ public class postController {
 
         //随机生成id号
         int id = user.getId()*100000+(int)(Math.random()*10000);
-
+        java.util.Date data = new java.util.Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm");
 
         Question question=new Question();
         question.setTitle(title);
@@ -64,11 +72,21 @@ public class postController {
         question.setLike_count(0);
         question.setView_count(0);
         question.setTag("未完成");
+        question.setCreateTime(ft.format(data));
 
 
         questionMapper.createQuestion(question);
 
         return "index";
+    }
+
+    @ResponseBody
+    @GetMapping("/getPost/{page}")
+    public postPage getPost(@PathVariable int page){
+        List<Question> list = questionMapper.list((page-1)*15,15);
+
+        return new postPage(list,
+                questionMapper.count()/10+(questionMapper.count()%10!=0 ? 1:0));
     }
 
 }
