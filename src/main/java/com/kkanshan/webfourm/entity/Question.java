@@ -10,13 +10,13 @@ public class Question {
     private int view_count;
     private int like_count;
     private String tag;
-    private long createTime;
+    private String createTime;
 
     public Question(){
 
     }
     public Question(int id,String title,String description,
-                    int createId,String tag,long createTime){
+                    int createId,String tag,String createTime){
         this.id=id;
         this.title=title;
         this.description=description;
@@ -57,7 +57,7 @@ public class Question {
         return tag;
     }
 
-    public long getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
@@ -93,7 +93,7 @@ public class Question {
         this.tag = tag;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 }

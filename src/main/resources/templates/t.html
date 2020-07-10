@@ -78,26 +78,42 @@
                     </div>
                 </div>
 <!--                回复框-->
-                <div class="card my-3 pb-3">
+                <div class="card mt-2 mb-5">
                     <h6 class="media_body mx-3 mt-3 mb-2">添加一条新的回复</h6>
-                    <hr class="divider"/>
+                    <hr style="margin-top: 10px;margin-bottom: 0px;"/>
                     <!--                帖子内容输入-->
                     <div class="form-group mb-2 mx-2">
-                        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="15"></textarea>
+                        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="8"></textarea>
                     </div>
 <!--                    回复按钮-->
-                    <button type="submit" class="btn btn-primary mx-2">登录</button>
+                    <button type="submit" class="btn btn-primary mx-2 mb-2">回复</button>
                 </div>
             </div>
             <div class="col-md-4">
                 <!--                个人资料卡 未登录：slogan+登录提示 已登录：个人资料卡+发帖按钮-->
                 <div class="card m-auto">
                     <div class="card-body">
-                        <h5 class="card-title">QutZone = Campus + Geek</h5>
-                        <small class="text-muted">QutZone是一个关于青春和梦想的地方。</small>
-                        <hr/>
-                        <a th:href="@{/register}" class="btn btn-primary mb-2" style="margin: 0px auto;display: table;">现在注册</a>
-                        <p class="card-title m-auto" style="margin: 0;display: table; color: #6c757d; size: 0.5rem;" >已有账号？请<a th:href="@{/login}">登录</a> </p>
+                        <div th:if="${session.user == null}">
+                            <h5 class="card-title">QutZone = Campus + Geek</h5>
+                            <small class="text-muted">QutZone是一个关于青春和梦想的地方。</small>
+                            <hr/>
+                            <a th:href="@{/register}" class="btn btn-primary mb-2" style="margin: 0px auto;display: table;">现在注册</a>
+                            <p class="card-title m-auto" style="margin: 0;display: table; color: #6c757d; size: 0.5rem;" >已有账号？请<a th:href="@{/login}">登录</a> </p>
+                        </div>
+                        <div th:if="${session.user} != null">
+                            <div class="media">
+                                <img th:src="${session.user.getHeadpic()}" style="height: 72px;width: 72px; margin-left: 0px;" >
+                                <h4 class="my-auto ml-2" th:text="${session.user.getName()}"></h4>
+                                <a th:href="@{/index}" class="my-auto ml-auto">
+                                    <h6 class="post_title pt-1">未读消息</h6>
+                                </a>
+                                <span class="badge badge-secondary my-auto mx-1">4</span>
+                            </div>
+                            <hr/>
+                            <form action="/post" method="get">
+                                <button class="btn btn-primary btn-lg btn-block" >发帖</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <!--                搜索框-->

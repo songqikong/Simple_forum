@@ -14,7 +14,7 @@
 <!--导入导航栏-->
 <div th:replace="~{navi :: navi}"></div>
 <!--包含登录框和其他登录方式的容器-->
-<div class="container mt-3 mb-3">
+<div class="container my-3">
     <div class="row">
         <div class="col-md-8">
             <!--登录框card-->
@@ -26,7 +26,7 @@
                         <li class="breadcrumb-item active" aria-current="page">注册</li>
                     </ol>
                 </nav>
-                <form style="padding: 15px;" action="/registerCheck" method="post">
+                <form class="mx-3 mb-3" action="/registerCheck" method="post">
                     <!--用户名from-->
                      <label for="username">用户名</label>
                      <input type="text" class="form-control mb-3" id="username" name="username" aria-describedby="usernameHelp" placeholder="请输入用户名">
@@ -56,6 +56,8 @@
     </div>
 </div>
 
-<div th:replace="~{navib :: navib}"></div>
+<div class="fixed-bottom">
+    <div th:replace="~{navib :: navib}"></div>
+</div>
 </body>
 </html>
