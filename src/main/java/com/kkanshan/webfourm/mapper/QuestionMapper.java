@@ -26,4 +26,10 @@ public interface QuestionMapper {
 
     @Select("select count(1) from question where createid=#{userid}")
     int countbyid(int userid);
+
+    @Select("select * from question where id=#{id}")
+    Question getbyId(int id);
+
+    @Update("update question set view_count=view_count+1 where id=#{id}")
+    void updateView(int id);
 }

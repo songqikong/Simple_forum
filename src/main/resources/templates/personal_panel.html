@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>个人面板</title>
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+<div th:fragment="personal_panel">
+        <!--                个人资料卡 未登录：slogan+登录提示 已登录：个人资料卡+发帖按钮-->
+        <div class="card m-auto">
+            <div class="card-body">
+                <div th:if="${session.user == null}">
+                    <h5 class="card-title">QutZone = Campus + Geek</h5>
+                    <small class="text-muted">QutZone是一个关于青春和梦想的地方。</small>
+                    <hr/>
+                    <a th:href="@{/register}" class="btn btn-primary mb-2" style="margin: 0px auto;display: table;">现在注册</a>
+                    <p class="card-title m-auto" style="margin: 0;display: table; color: #6c757d; size: 0.5rem;" >已有账号？请<a th:href="@{/login}">登录</a> </p>
+                </div>
+                <div th:if="${session.user} != null">
+                    <div class="media">
+                        <img th:src="${session.user.getHeadpic()}" style="height: 72px;width: 72px; margin-left: 0px;" >
+                        <h4 class="my-auto ml-2" th:text="${session.user.getName()}"></h4>
+                        <a th:href="@{/noti}" class="my-auto ml-auto">
+                            <h6 class="post_title pt-1">未读消息</h6>
+                        </a>
+                        <span class="badge badge-secondary my-auto mx-1">4</span>
+                    </div>
+                    <hr/>
+                    <form action="/post" method="get">
+                        <button class="btn btn-primary btn-lg btn-block" >发帖</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--                搜索框-->
+        <form class="form-inline mt-2">
+            <input class="form-control" type="text" style="width:87%" placeholder="搜索关键字" aria-label="Search">
+            <button class="btn btn-outline-primary ml-auto  my-2 my-sm-0" type="submit"><i class="fa fa-search" style="color:#007bff"></i></button>
+        </form>
+
+</div>
+
+
+</body>
+</html>
