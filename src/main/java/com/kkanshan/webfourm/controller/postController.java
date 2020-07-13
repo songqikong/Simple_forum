@@ -86,7 +86,7 @@ public class postController {
         List<Question> list = questionMapper.list((page-1)*15,15);
 
         return new postPage(list,
-                questionMapper.count()/10+(questionMapper.count()%10!=0 ? 1:0));
+                questionMapper.count()/15+(questionMapper.count()%15!=0 ? 1:0));
     }
 
 }
