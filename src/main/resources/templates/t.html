@@ -77,16 +77,18 @@
                     </div>
                 </div>
 <!--                回复框-->
-                <div class="card mt-2 mb-5">
-                    <h6 class="media_body mx-3 mt-3 mb-2">添加一条新的回复</h6>
-                    <hr style="margin-top: 10px;margin-bottom: 0px;"/>
-                    <!--                帖子内容输入-->
-                    <div class="form-group mb-2 mx-2">
-                        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="8"></textarea>
+                <form action="/tCheck" method="post">
+                    <div class="card mt-2 mb-5">
+                        <h6 class="media_body mx-3 mt-3 mb-2">添加一条新的回复</h6>
+                        <hr style="margin-top: 10px;margin-bottom: 0px;"/>
+                        <!--                帖子内容输入-->
+                        <div class="form-group mb-2 mx-2">
+                            <textarea name="tText" class="form-control mt-2" id="exampleFormControlTextarea1" rows="8"></textarea>
+                        </div>
+    <!--                    回复按钮-->
+                        <button type="submit" class="btn btn-primary mx-2 mb-2">回复</button>
                     </div>
-<!--                    回复按钮-->
-                    <button type="submit" class="btn btn-primary mx-2 mb-2">回复</button>
-                </div>
+                </form>
             </div>
 
             <div class="col-md-4">

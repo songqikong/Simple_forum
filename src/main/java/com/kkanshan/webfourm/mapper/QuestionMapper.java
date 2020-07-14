@@ -32,4 +32,8 @@ public interface QuestionMapper {
 
     @Update("update question set view_count=view_count+1 where id=#{id}")
     void updateView(int id);
+
+    //@Select("insert into question(title,description,createId,tag,createTime) values (#{title},#{description},#{createId},#{tag},#{createTime})")
+    //void createComment(Question question);
+
 }
