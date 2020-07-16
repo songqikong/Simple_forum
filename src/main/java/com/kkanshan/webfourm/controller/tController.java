@@ -6,6 +6,7 @@ import com.kkanshan.webfourm.entity.User;
 import com.kkanshan.webfourm.mapper.CommentMapper;
 import com.kkanshan.webfourm.mapper.QuestionMapper;
 import com.kkanshan.webfourm.mapper.UserMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class tController {
@@ -46,6 +49,7 @@ public class tController {
         //    return "login";
         //}
 
+        //帖子信息区
         Question question = questionMapper.getbyId(id);
         qt=question;
         question.setView_count(question.getView_count()+1);
@@ -53,6 +57,22 @@ public class tController {
         User user = userMapper.findById(question.getCreateId());
         model.addAttribute(question);
         model.addAttribute(user);
+
+        //回复区
+        List<Comment> comment = commentMapper.getByParentId(question.getId());
+        System.out.println("111111111111111111111111111111111111111111111111");
+        System.out.println(question.getId());
+        for(int i=0;i<comment.size();i++){
+            System.out.println(comment.get(i).getContent());
+        }
+        model.addAttribute(comment);
+
+        //获取的comment的createId，还需要通过user表找出createId的name
+        List<User> u2=userMapper.listFindByCommentId(question.getId());
+        for(int i=0;i<u2.size();i++){
+            System.out.println(u2.get(i).getName());
+        }
+        model.addAttribute(u2);
 
         return "t";
     }
@@ -88,7 +108,7 @@ public class tController {
 
         Comment c = new Comment();
 
-        c.setParent_id(qt.getCreateId());
+        c.setParent_id(qt.getId());
         c.setCommentCount(0);
         c.setCommenter(user.getId());
         c.setContent(tText);

@@ -50,29 +50,21 @@
 <!--                回复card-->
                 <div class="card my-3 pb-3">
                     <h6 class="media_body mx-3 mt-3 mb-2">回复</h6>
-                    <hr class="divider"/>
 <!--                    回复展示区-->
                     <div class="media">
-                        <img src="/img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
+
                         <div class="media-body comment_body">
-                            <p style="font-size: 15px; margin-top: 5px;margin-bottom: 5px">这里显示回复人ID</p>
-                            我觉得这个帖子很棒
-                        </div>
-                    </div>
-                    <hr class="divider"/>
-                    <div class="media">
-                        <img src="/img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
-                        <div class="media-body comment_body">
-                            <p style="font-size: 15px; margin-top: 5px;margin-bottom: 5px">这里显示回复人ID</p>
-                            我觉得这个帖子很棒
-                        </div>
-                    </div>
-                    <hr class="divider"/>
-                    <div class="media">
-                        <img src="/img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
-                        <div class="media-body comment_body">
-                            <p style="font-size: 15px; margin-top: 5px;margin-bottom: 5px">这里显示回复人ID</p>
-                            我觉得这个帖子很棒
+                            <!--<p style="font-size: 15px; margin-top: 5px;margin-bottom: 5px">这里显示回复人ID</p> -->
+
+                            <tr th:each="c:${commentList}" style="font-size: 15px; margin-top: 5px;margin-bottom: 5px">
+                                <hr class="divider"/>
+                                <img src="/img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
+                                <!-- 通过得到当前c的索引，根据索引从user里面取值-->
+                                <td th:text="${userList.get(commentList.indexOf(c)).getName()}" style="font-size: 15px; margin-top: 5px;margin-bottom: 5px"></td>
+                                <br>
+                                <td th:text="${c.getContent()}" style="width:100px;word-wrap:break-word;font-size: 15px; margin-top: 5px;margin-bottom: 5px"></td>
+
+                            </tr>
                         </div>
                     </div>
                 </div>
