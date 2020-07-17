@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>从数据库获取标题</title>
+    <title th:text="${question.getTitle()}"></title>
     <!--bootstrap css-->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -58,12 +58,15 @@
 
                             <tr th:each="c:${commentList}" style="font-size: 15px; margin-top: 5px;margin-bottom: 5px">
                                 <hr class="divider"/>
-                                <img src="/img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
-                                <!-- 通过得到当前c的索引，根据索引从user里面取值-->
-                                <td th:text="${userList.get(commentList.indexOf(c)).getName()}" style="font-size: 15px; margin-top: 5px;margin-bottom: 5px"></td>
-                                <br>
-                                <td th:text="${c.getContent()}" style="width:100px;word-wrap:break-word;font-size: 15px; margin-top: 5px;margin-bottom: 5px"></td>
-
+                                <div class="media">
+                                    <img src="/img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
+                                    <div class="media-body media_body">
+                                        <!-- 通过得到当前c的索引，根据索引从user里面取值-->
+                                        <h5 th:text="${userList.get(commentList.indexOf(c)).getName()}"></h5>
+<!--                                        <br>-->
+                                        <span th:text="${c.getContent()}" class=""></span>
+                                    </div>
+                                </div>
                             </tr>
                         </div>
                     </div>
