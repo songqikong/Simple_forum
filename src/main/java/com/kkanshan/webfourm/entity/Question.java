@@ -9,14 +9,14 @@ public class Question {
     private int comment_count;
     private int view_count;
     private int like_count;
-    private String tag;
+    private int tag;
     private String createTime;
 
     public Question(){
 
     }
-    public Question(int id,String title,String description,
-                    int createId,String tag,String createTime){
+    public Question(int id, String title, String description,
+                    int createId, int tag, String createTime){
         this.id=id;
         this.title=title;
         this.description=description;
@@ -53,7 +53,7 @@ public class Question {
         return like_count;
     }
 
-    public String getTag() {
+    public int getTag() {
         return tag;
     }
 
@@ -89,7 +89,7 @@ public class Question {
         this.like_count = like_count;
     }
 
-    public void setTag(String tag) {
+    public void setTag(int tag) {
         this.tag = tag;
     }
 

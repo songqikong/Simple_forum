@@ -60,11 +60,11 @@
                                 <hr class="divider"/>
                                 <div class="media">
                                     <img src="/img/ava.png" class="ml-3 mr-3" style="height: 54px;width: 54px;" alt="avatar-big">
-                                    <div class="media-body media_body">
+                                    <div class="media-body">
                                         <!-- 通过得到当前c的索引，根据索引从user里面取值-->
-                                        <h5 th:text="${userList.get(commentList.indexOf(c)).getName()}"></h5>
+                                        <h6 th:text="${userList.get(commentList.indexOf(c)).getName()}" class="mt-1" style="color: #838383;font-weight:bold;"></h6>
 <!--                                        <br>-->
-                                        <span th:text="${c.getContent()}" class=""></span>
+                                        <span class="post_title" th:text="${c.getContent()}"></span>
                                     </div>
                                 </div>
                             </tr>

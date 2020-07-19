@@ -45,13 +45,13 @@
                             <!--                    选择分区-->
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-secondary " @click="inCurPart(1)" :class="curPart == 1? 'active' : ''">
-                                        <input type="radio" name="options" id="option1" value="1"> 闲聊
+                                        <input type="radio" name="options" id="option1" value="0"> 闲聊
                                     </label>
                                     <label class="btn btn-secondary" @click="inCurPart(2)" :class="curPart == 2? 'active' : ''">
-                                        <input type="radio" name="options" id="option2" value="2"> 失物招领
+                                        <input type="radio" name="options" id="option2" value="1"> 失物招领
                                     </label>
                                     <label class="btn btn-secondary" @click="inCurPart(3)" :class="curPart == 3? 'active' : ''">
-                                        <input type="radio" name="options" id="option3" value="3"> 消息发布
+                                        <input type="radio" name="options" id="option3" value="2"> 消息发布
                                     </label>
                                 </div>
                                 <button type="submit" @click="postPart" class="btn btn-primary pull-right">提交</button>

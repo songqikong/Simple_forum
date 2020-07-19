@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/index.css">
 <!--     Vue-->
     <script src="/js/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -27,18 +27,18 @@
                 <div id="postlist">
                     <div class="card" style="padding-bottom: 10px;padding-top: 10px;">
                         <a>
+                        <span>
+                               <button type="button" @click="changePart(-1)" class="btn btn-outline-primary mr-auto ml-3" :class="curPart == -1? 'active' : ''">全部</button>
+                        </span>
                             <span>
-                                   <button type="button" class="btn btn-outline-primary active  mr-auto ml-3">全部</button>
-                            </span>
+                               <button type="button" @click="changePart(0)" class="btn btn-outline-primary  mr-auto ml-2" :class="curPart == 0? 'active' : ''">闲聊</button>
+                        </span>
                             <span>
-                                   <button type="button" class="btn btn-outline-primary  mr-auto ml-2">闲聊</button>
-                            </span>
+                               <button type="button" @click="changePart(1)" class="btn btn-outline-primary  mr-auto ml-2" :class="curPart == 1? 'active' : ''">失物招领</button>
+                        </span>
                             <span>
-                                   <button type="button" class="btn btn-outline-primary  mr-auto ml-2">失物招领</button>
-                            </span>
-                            <span>
-                                   <button type="button" class="btn btn-outline-primary  mr-auto ml-2">消息发布</button>
-                            </span>
+                               <button type="button" @click="changePart(2)" class="btn btn-outline-primary  mr-auto ml-2" :class="curPart == 2? 'active' : ''">消息发布</button>
+                        </span>
                         </a>
 <!--                    帖子显示区-->
                         <template v-for="(list,i) of lists">
@@ -49,7 +49,7 @@
                                     <h5 class="mt-0">
                                         <a class="post_title" v-bind:href="(url) + list.id">{{list.title}}</a>
                                     </h5>
-                                    <span class="mr-2 p-1 category">#闲聊</span>发布于 {{(list.createTime)}}
+                                    <span class="mr-2 p-1 category">#{{showPart(list.tag)}}</span>发布于 {{(list.createTime)}}
                                 </div>
                                 <span class="badge badge-primary ml-auto mr-3 my-auto px-2">{{list.comment_count}}</span>
                             </div>
@@ -101,7 +101,8 @@
                 pageNo:1,
                 pageSize:10,
             },
-            url: '/t/'
+            url: '/t/',
+            curPart: -1,
         },
         methods:{
             getLists:function (index) {
@@ -109,7 +110,7 @@
                 console.log(this.page.pageNo);
                 axios({
                     method:'get',
-                    url:"/getPost/" + this.page.pageNo
+                    url:"/getPost/" + this.curPart + '/' + this.page.pageNo
                 }).then(res=>{
                     console.log(res);
                     this.lists = res.data.list;
@@ -121,6 +122,19 @@
             curPage:function (index) {
                 this.getLists(index);
             },
+            changePart:function(part){
+                this.curPart = part;
+                this.getLists();
+            },
+            showPart:function(part){
+                if(part == 0){
+                    return "闲聊"
+                }else if (part == 1){
+                    return "失物招领"
+                }else if (part == 2){
+                    return "消息发布"
+                }
+            },
             postJump(id){
                 axios({
                     method: 'get',
@@ -128,9 +142,12 @@
                 })
             },
         },
-        mounted:function () {
-            this.getLists();
-        }
+            mounted:function () {
+                this.getLists();
+        },
+            inCurPart:function(part){
+            this.curPart = part;
+        },
     })
 </script>
 

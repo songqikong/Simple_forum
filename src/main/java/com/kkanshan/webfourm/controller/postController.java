@@ -45,6 +45,7 @@ public class postController {
 
         String title = request.getParameter("title");
         String description=request.getParameter("description");
+        String part = request.getParameter("options");
 
 
         //获取当前登陆用户的信息
@@ -71,7 +72,7 @@ public class postController {
         question.setComment_count(0);
         question.setLike_count(0);
         question.setView_count(0);
-        question.setTag("未完成");
+        question.setTag(Integer.valueOf(part));
         question.setCreateTime(ft.format(data));
 
 
@@ -81,12 +82,26 @@ public class postController {
     }
 
     @ResponseBody
-    @GetMapping("/getPost/{page}")
-    public postPage getPost(@PathVariable int page){
-        List<Question> list = questionMapper.list((page-1)*15,15);
+    @GetMapping("/getPost/{tag}/{page}")
+    public postPage getPost(@PathVariable int page, @PathVariable int tag){
+        if(tag == 0){
+            List<Question> list = questionMapper.listByTag(tag,(page-1)*15,15);
+            return new postPage(list,
+                    questionMapper.count()/15+(questionMapper.countTag(tag)%15!=0 ? 1:0));
+        }else if(tag == 1){
+            List<Question> list = questionMapper.listByTag(tag,(page-1)*15,15);
+            return new postPage(list,
+                    questionMapper.count()/15+(questionMapper.countTag(tag)%15!=0 ? 1:0));
+        }else if (tag == 2){
+            List<Question> list = questionMapper.listByTag(tag,(page-1)*15,15);
+            return new postPage(list,
+                    questionMapper.count()/15+(questionMapper.countTag(tag)%15!=0 ? 1:0));
+        }
 
+        List<Question> list = questionMapper.list((page-1)*15,15);
         return new postPage(list,
                 questionMapper.count()/15+(questionMapper.count()%15!=0 ? 1:0));
     }
+
 
 }

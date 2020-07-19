@@ -21,17 +21,26 @@ public interface QuestionMapper {
     @Select("select count(1) from question")
     int count();
 
+    @Select("select * from question where tag=#{tag} order by id desc limit #{offset},#{size}" )
+    List<Question> listByTag(@Param("tag") int tag ,@Param("offset") int offset, @Param("size") int size);
+
+    @Select("select count(1) from question where tag=#{tag}")
+    int countTag(int tag);
+
     @Select("select * from question where createid=#{userid} limit #{offset},#{size}")
-    List<Question> listbyid(@Param("userid") int userid, @Param("offset") int offset, @Param("size") int size);
+    List<Question> listById(@Param("userid") int userid, @Param("offset") int offset, @Param("size") int size);
 
     @Select("select count(1) from question where createid=#{userid}")
-    int countbyid(int userid);
+    int countById(int userid);
 
     @Select("select * from question where id=#{id}")
     Question getbyId(int id);
 
     @Update("update question set view_count=view_count+1 where id=#{id}")
     void updateView(int id);
+
+    @Update("update question set comment_count=comment_count+1 where id=#{id}")
+    void updateComment(int id);
 
     //@Select("insert into question(title,description,createId,tag,createTime) values (#{title},#{description},#{createId},#{tag},#{createTime})")
     //void createComment(Question question);

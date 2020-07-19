@@ -24,6 +24,8 @@ import java.util.List;
 @Controller
 public class tController {
 
+    private int tid;
+
     @Autowired
     UserMapper userMapper;
 
@@ -48,6 +50,7 @@ public class tController {
         //if (cookies == null) {
         //    return "login";
         //}
+        tid = id;
 
         //帖子信息区
         Question question = questionMapper.getbyId(id);
@@ -60,7 +63,7 @@ public class tController {
 
         //回复区
         List<Comment> comment = commentMapper.getByParentId(question.getId());
-        System.out.println("111111111111111111111111111111111111111111111111");
+        //System.out.println("111111111111111111111111111111111111111111111111");
         System.out.println(question.getId());
         for(int i=0;i<comment.size();i++){
             System.out.println(comment.get(i).getContent());
@@ -116,6 +119,7 @@ public class tController {
         c.setType(1);//二级回复，暂未实现，统一设置1
         c.setCreateTime(ft.format(data));
         commentMapper.insert(c);
+        questionMapper.updateComment(tid);
 
         //回到当前页面
         //System.out.println(qt.getId());
