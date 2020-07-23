@@ -44,7 +44,12 @@
                     </div>
                     <hr style="margin-bottom: 0px;"/>
                     <nav aria-label="bottom_view" style="background-color: #e9ecef;">
-                        <p class="text-right" style="margin-top: 10px; margin-bottom: 10px;margin-right: 10px; color: #6c757d;">浏览量：<span th:text="${question.getView_count()}"></span></p>
+                        <div class="d-flex justify-content-between">
+                            <div th:if="${question.getCreateId()}">
+                                <p class="text-left" style="margin-top: 10px;margin-bottom: 10px;margin-left: 10px;color: #6c757d;" th:href="@{/delete}">删除</p>
+                            </div>
+                            <p class="text-right" style="margin-top: 10px;margin-bottom: 10px;margin-right: 10px;color: #6c757d;">浏览量：<span th:text="${question.getView_count()}"></span></p>
+                        </div>
                     </nav>
                 </div>
 <!--                回复card-->
@@ -101,6 +106,6 @@
 
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

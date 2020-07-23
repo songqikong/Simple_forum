@@ -51,6 +51,7 @@ public class tController {
         //    return "login";
         //}
         tid = id;
+        int curId = -1;
 
         //帖子信息区
         Question question = questionMapper.getbyId(id);
@@ -59,21 +60,34 @@ public class tController {
         questionMapper.updateView(question.getId());
         User user = userMapper.findById(question.getCreateId());
         model.addAttribute(question);
-        model.addAttribute(user);
+        //查找cookies，获取当前用户的信息
+        Cookie[] cookies=request.getCookies();
+        /*if(cookies==null){
+            model.addAttribute(curId);
+        }*/
+        User curuser=null;
+        for (Cookie cookie:cookies){
+            if(cookie.getName().equals("token")){
+                String token=cookie.getValue();
+                curuser=userMapper.findBytoken(token);
+                break;
+            }
+        }
+        assert curuser != null;
+        model.addAttribute(curuser);
 
         //回复区
         List<Comment> comment = commentMapper.getByParentId(question.getId());
-        //System.out.println("111111111111111111111111111111111111111111111111");
-        System.out.println(question.getId());
+//        System.out.println(question.getId());
         for(int i=0;i<comment.size();i++){
-            System.out.println(comment.get(i).getContent());
+//            System.out.println(comment.get(i).getContent());
         }
         model.addAttribute(comment);
 
         //获取的comment的createId，还需要通过user表找出createId的name
         List<User> u2=userMapper.listFindByCommentId(question.getId());
         for(int i=0;i<u2.size();i++){
-            System.out.println(u2.get(i).getName());
+//            System.out.println(u2.get(i).getName());
         }
         model.addAttribute(u2);
 

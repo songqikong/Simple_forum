@@ -20,7 +20,7 @@ public class indexController {
         //查找cookies，观察是否有token存在
         Cookie[] cookies=request.getCookies();
         if(cookies==null){
-            return "login";
+            return "index";
         }
         User user=null;
         for (Cookie cookie:cookies){
